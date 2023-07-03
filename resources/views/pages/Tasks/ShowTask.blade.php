@@ -1,0 +1,57 @@
+@extends('layouts.master')
+@section('css')
+
+@section('title')
+{{trans('tasks-trans.Show_Task')}}
+@stop
+@endsection
+@section('page-header')
+<!-- breadcrumb -->
+<div class="page-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 class="mb-0" style="font-family: 'Cairo', sans-serif;color: #8b008b">{{trans('tasks-trans.Show_Task')}}
+               / {{$employeename}} </h4>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
+                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="default-color">{{trans('main-trans.Home')}}</a></li>
+                <li  class="breadcrumb-item "><a href="{{route('Send_Task.index')}}">{{trans('tasks-trans.Employees_Tasks')}}</a></li>
+                <li class="breadcrumb-item active">
+                    <a href="{{url('ShowTask')}}/{{ $employeename }}/{{$filename}}/{{$Employee_Task->id}}">{{trans('tasks-trans.Show_Task')}}</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+@endsection
+@section('content')
+<!-- row -->
+<div class="row " >
+    <div class="col-md-12 mb-30">
+
+        <div class="card card-statistics h-100">
+            <br>
+            <a class=" btn btn-outline-info justify-content-center"
+            href="{{url('Download_Task')}}/{{ $employeename }}/{{$filename}}"
+            role="button"><i class="fa fa-download"></i>&nbsp; {{trans('employees-trans.Download')}}</a>
+<br>
+<div class="mr-3 ml-3">
+        <h3 style="color: #008080">{{ trans('tasks-trans.Description') }} :</h3>
+        <p style="font-size: 20px">{{ $Employee_Task->Description }}</p>
+</div>
+<br>
+               <div class="card-body text-center ">
+               <iframe  src="{{url('attachments/SendingEmployeeTasks/'.$employeename.'/'.$filename)}}" frameborder="0" style="width: 800px; height:600px"></iframe>
+               </div>
+        </div>
+    </div>
+
+</div>
+<br>
+<!-- row closed -->
+@endsection
+@section('js')
+
+@endsection
